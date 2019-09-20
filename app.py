@@ -18,11 +18,11 @@ conn = sqlite3.connect('database.db')
 conn.execute('CREATE TABLE students (Input TEXT, Prediction TEXT)')
 conn.close()
 '''
-clf_path = r'C:\Users\kesgupta\Desktop\nlp practice\restAPI\using anjali link\Deployment-flask-master\flask-rest-setup-master\sentiment-clf\lib\models/FitaraClassifier.pkl'
+clf_path = r'path of the folder where your pickle files are stored/FitaraClassifier.pkl'
 with open(clf_path, 'rb') as f:
     model.clf = pickle.load(f)
 
-vec_path = r'C:\Users\kesgupta\Desktop\nlp practice\restAPI\using anjali link\Deployment-flask-master\flask-rest-setup-master\sentiment-clf\lib\models/CountVectorizer.pkl'
+vec_path = r'path of the folder where your pickle files are stored/CountVectorizer.pkl'
 with open(vec_path, 'rb') as f:
     model.vectorizer = pickle.load(f)
 
@@ -68,43 +68,3 @@ def predict():
 
 if __name__ == "__main__":
     app.run(debug=True)
-'''
-# argument parsing
-parser = reqparse.RequestParser()
-parser.add_argument('query')
-
-
-class PredictSentiment(Resource):
-    def get(self):
-        # use parser and find the user's query
-        args = parser.parse_args()
-        user_query = args['query']
-
-        # vectorize the user's query and make a prediction
-        uq_vectorized = model.vectorizer_transform(np.array([user_query]))
-        prediction = model.predict(uq_vectorized)
-        pred_proba = model.predict_proba(uq_vectorized)
-
-        # Output either 'Negative' or 'Positive' along with the score
-        if prediction == 0:
-            pred_text = 'Negative'
-        else:
-            pred_text = 'Positive'
-
-        # round the predict proba value and set to new variable
-        confidence = round(pred_proba[0], 3)
-
-        # create JSON object
-        output = {'prediction': pred_text, 'confidence': confidence}
-
-        return output
-
-
-# Setup the Api resource routing here
-# Route the URL to the resource
-api.add_resource(PredictSentiment, '/predict')
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
-'''
