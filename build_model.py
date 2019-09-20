@@ -23,8 +23,7 @@ def stopwords(text):
 def build_model():
     model = NLPModel()
 
-    # filename = os.path.join(
-    #     os.path.dirname(__file__), 'chalicelib', 'all/train.tsv')
+    #unzip the dataFiles in the folder where this file is saved before executing the below statements
     df_extract_combined = pd.read_csv('extract_combined.csv')
     df_labels = pd.read_csv('labels.csv')
 
