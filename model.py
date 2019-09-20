@@ -51,14 +51,14 @@ class NLPModel(object):
         y_pred = self.clf.predict(X)
         return y_pred
 
-    def pickle_vectorizer(self, path=r'C:\Users\kesgupta\Desktop\nlp practice\restAPI\using anjali link\Deployment-flask-master\flask-rest-setup-master\sentiment-clf\lib\models/CountVectorizer.pkl'):
+    def pickle_vectorizer(self, path=r'path of the folder that you wish to store your pickle files/CountVectorizer.pkl'):
         """Saves the trained vectorizer for future use.
         """
         with open(path, 'wb') as f:
             pickle.dump(self.vectorizer, f)
             print("Pickled vectorizer at {}".format(path))
 
-    def pickle_clf(self, path=r'C:\Users\kesgupta\Desktop\nlp practice\restAPI\using anjali link\Deployment-flask-master\flask-rest-setup-master\sentiment-clf\lib\models/FitaraClassifier.pkl'):
+    def pickle_clf(self, path=r'path of the folder that you wish to store your pickle files/FitaraClassifier.pkl'):
         """Saves the trained classifier for future use.
         """
         with open(path, 'wb') as f:
